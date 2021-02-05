@@ -1,0 +1,72 @@
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(5, 300px);
+    grid-template-rows: 200px 200px;
+    gap: 10px;
+    align-items: center;
+    justify-items: center;
+}
+
+.wrapper2 {
+    display: grid;
+    grid-template-columns: 1000px;
+    grid-template-rows: 200px 200px;
+    gap: 10px;
+    margin: 30px 0px 0px 130px;
+}
+.label {
+    width: 31px;
+    height: 17px;
+    font-family: 'Noto Sans JP';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 17px;
+    color: #333333;
+}
+
+.outerDiv {
+    margin: 10px;
+    position: relative;
+}
+
+::placeholder {
+    font-family: 'Noto Sans JP';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #828282;
+}
+
+.helperText {
+    position: absolute;
+    font-family: 'Noto Sans JP';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 14px;
+    color: #828282;
+}
+
+.text {
+    position: absolute;
+    font-family: 'Ubuntu Mono';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 12px;
+    color: #333333;
+}
+
+input {
+    text-align: start;
+    font-size: 20px;
+    font-family: 'Noto Sans JP';
+}
+
+textarea {
+    text-align: start;
+    font-size: 20px;
+    font-family: 'Noto Sans JP';
+}
