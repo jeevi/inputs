@@ -13,8 +13,8 @@ const InputsContainer = () => {
           <Input label="Label" placeholder="placeholder" helperText="some helper text"/>
         </div>
         <div>
-          <p className="text">{`<Input size="sm" />`}</p><br />
-          <Input size="sm" label="Label" />
+          <p className="text">{`<Input size="sm" helperText="some helper text"/>`}</p><br />
+          <Input size="sm" label="Label" helperText="some helper text"/>
         </div>
         <div>
           <p className="text">{`<Input size="md" />`}</p><br />
@@ -34,11 +34,15 @@ const InputsContainer = () => {
         </div>
         <div>
           <p className="text">{`<Input startIcon={PhoneIcon} />`}</p><br />
-          <Input label="Label" startIcon={PhoneIcon} />
+          <Input label="Label" Icon="start">
+            <PhoneIcon fontSize="small" />
+          </Input>
         </div>
         <div>
           <p className="text">{`<Input startIcon={LockIcon} />`}</p><br />
-          <Input label="Label" startIcon={LockIcon} />
+          <Input label="Label" Icon="end">
+            <LockIcon fontSize="small" />
+          </Input>
         </div>
       </div>
       <div className="wrapper2">

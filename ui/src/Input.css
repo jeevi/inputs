@@ -27,30 +27,29 @@
 
 .outerDiv {
     margin: 10px;
-    position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 ::placeholder {
     font-family: 'Noto Sans JP';
     font-style: normal;
     font-weight: 500;
-    font-size: 16px;
-    line-height: 20px;
+    font-size: 20px;
+    line-height: normal;
     color: #828282;
 }
 
 .helperText {
-    position: absolute;
     font-family: 'Noto Sans JP';
     font-style: normal;
     font-weight: normal;
     font-size: 10px;
-    line-height: 14px;
+    line-height: 20px;
     color: #828282;
 }
 
 .text {
-    position: absolute;
     font-family: 'Ubuntu Mono';
     font-style: normal;
     font-weight: normal;
@@ -59,14 +58,21 @@
     color: #333333;
 }
 
-input {
+input, textarea {
+    position: absolute;;
     text-align: start;
     font-size: 20px;
     font-family: 'Noto Sans JP';
+    left: 0px;
+    top: 0px;
 }
 
-textarea {
-    text-align: start;
-    font-size: 20px;
-    font-family: 'Noto Sans JP';
+.innerDiv {
+    position: relative;
+}
+
+svg {
+    position: absolute;
+    top: 15px;
+    z-index: 2;
 }

@@ -7,6 +7,7 @@ import {
   blur,
   getDimensions,
   getBoxColor,
+  getHelperTextCSS,
 } from './cssUtils';
 import './Input.css';
 
@@ -19,8 +20,8 @@ const propTypes = {
   helperText: PropTypes.string,
   disabled: PropTypes.bool,
   error: PropTypes.bool,
-  startIcon: PropTypes.node,
-  endIcon: PropTypes.node,
+  children: PropTypes.node,
+  Icon: PropTypes.oneOf(["start", "end"]),
 };
 
 const defaultProps = {
@@ -31,8 +32,8 @@ const defaultProps = {
   helperText: "",
   disabled: false,
   error: false,
-  startIcon: null,
-  endIcon: null,
+  children: null,
+  Icon: "start",
 };
 
 const Input = ({
@@ -44,8 +45,8 @@ const Input = ({
   helperText,
   disabled,
   error,
-  startIcon,
-  endIcon,
+  children,
+  Icon,
 }) => {
 
   const getColor = () => {
@@ -68,6 +69,19 @@ const Input = ({
   }, [error]);
 
   const aggregatedCSS = { ...getDimensions(size), ...getBoxColor(error) };
+  const paddingHelperTextCSS = { ...getHelperTextCSS(size, rows) };
+
+  if (children) {
+    if (Icon === "end") {
+      aggregatedCSS['padding-right'] = '30px';
+    } else {
+      aggregatedCSS['padding-left'] = '30px';
+    }
+  }
+
+  const renderChildren = () => {
+    return children && React.cloneElement(children, {style: Icon === "end" ? { right: '5px' } : { left: '5px'} });
+  };
 
   const handleMouseActions = (e, fn) => {
     const color = fn(e, error);
@@ -76,39 +90,42 @@ const Input = ({
     }
   };
 
+  console.log(children);
   return (
-    <div className="outerDiv">
-      <label className="label" style={{ color }}>{label}</label><br/>
-      {startIcon && <startIcon fontSize="small"/>}
-      {
-        size === "multiline" ?
-        <textarea
-          placeholder={placeholder}
-          value={_value}
-          name={label}
-          disabled={disabled}
-          onMouseOver={e => handleMouseActions(e, mouseOver)}
-          onMouseOut={e => handleMouseActions(e, mouseOut)}
-          onChange={e => setValue(e.target.value)}
-          onFocus={e => handleMouseActions(e, focus)}
-          onBlur={e => handleMouseActions(e, blur)}
-          rows={`${rows}`} 
-          style={{ ...getBoxColor(error), width: '200px' }}
-        /> :
-        <input
-          placeholder={placeholder}
-          value={_value}
-          name={label}
-          onMouseOver={e => handleMouseActions(e, mouseOver)}
-          onMouseOut={e => handleMouseActions(e, mouseOut)}
-          onChange={e => setValue(e.target.value)}
-          onFocus={e => handleMouseActions(e, focus)}
-          onBlur={e => handleMouseActions(e, blur)}
-          style={{ ...aggregatedCSS }}
-          disabled={disabled}
-        />
-      }
-      { helperText && helperText.length && <p className="helperText" style={{ color }}>{helperText}</p> }
+    <div className="outerDiv" style={{ width: aggregatedCSS.width }}>
+      <label className="label" style={{ color }}>{label}</label>
+      <div className="innerDiv">
+        {renderChildren()}
+        {
+          size === "multiline" ?
+          <textarea
+            placeholder={placeholder}
+            value={_value}
+            name={label}
+            disabled={disabled}
+            onMouseOver={e => handleMouseActions(e, mouseOver)}
+            onMouseOut={e => handleMouseActions(e, mouseOut)}
+            onChange={e => setValue(e.target.value)}
+            onFocus={e => handleMouseActions(e, focus)}
+            onBlur={e => handleMouseActions(e, blur)}
+            rows={`${rows}`} 
+            style={{ ...getBoxColor(error), width: '200px' }}
+          /> :
+          <input
+            placeholder={placeholder}
+            value={_value}
+            name={label}
+            onMouseOver={e => handleMouseActions(e, mouseOver)}
+            onMouseOut={e => handleMouseActions(e, mouseOut)}
+            onChange={e => setValue(e.target.value)}
+            onFocus={e => handleMouseActions(e, focus)}
+            onBlur={e => handleMouseActions(e, blur)}
+            style={{ ...aggregatedCSS }}
+            disabled={disabled}
+          />
+        }
+      </div>
+      { helperText && helperText.length && <p className="helperText" style={{ ...paddingHelperTextCSS, color }}>{helperText}</p> }
     </div>
 
   );

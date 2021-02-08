@@ -36,6 +36,20 @@ export const getBoxColor = error => {
   }
 }
 
+export const getHelperTextCSS = (size, rows) => {
+  switch(size) {
+    case "sm":
+      return { paddingTop: '40px' };
+    case "md", "fullWidth":
+      return { paddingTop: '50px' };
+    case "multiline":
+      return { paddingTop: `${rows * 25}px` };
+    default:
+      return { paddingTop: '50px' };
+  }
+};
+
+
 /** JS event action handlers */
 export function mouseOut(event, error) {
   if ((event.target.nodeName === "INPUT" || event.target.nodeName === "TEXTAREA") && document.activeElement !== event.target) {
