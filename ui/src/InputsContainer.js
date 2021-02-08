@@ -33,13 +33,13 @@ const InputsContainer = () => {
           <Input label="Label" disabled={true} />
         </div>
         <div>
-          <p className="text">{`<Input startIcon={PhoneIcon} />`}</p><br />
+          <p className="text">{`<Input startIcon />`}</p><br />
           <Input label="Label" Icon="start">
             <PhoneIcon fontSize="small" />
           </Input>
         </div>
         <div>
-          <p className="text">{`<Input startIcon={LockIcon} />`}</p><br />
+          <p className="text">{`<Input endIcon />`}</p><br />
           <Input label="Label" Icon="end">
             <LockIcon fontSize="small" />
           </Input>
